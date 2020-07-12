@@ -1,22 +1,26 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+// импорт, если страница статистически загружается
+// для lazyload такой импорт ненужен
+// import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
   const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
+     // для использования лейаута используем meta
     meta: {layout: 'main'},
-    component: Home
+    // подключение статистической страницы
+    // component: Home
+    // подключение с использованием lazy load
+    component: () => import('../views/Home.vue')
   },
   {
     path: '/login',
     name: 'login',
-    // для использования лейаута используем meta
     meta: {layout: 'empty'},
-    // lazy load
     component: () => import('../views/Login.vue')
   },
   {
@@ -26,10 +30,10 @@ Vue.use(VueRouter)
     component: () => import('../views/Register.vue')
   },
   {
-    path: '/detail-record',
-    name: 'detail-record',
+    path: '/detail/:id',
+    name: 'detail',
     meta: {layout: 'main'},
-    component: () => import('../views/DetailRecord.vue')
+    component: () => import('../views/Detail.vue')
   },
   {
     path: '/categories',
