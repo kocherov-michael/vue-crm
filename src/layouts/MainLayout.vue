@@ -1,11 +1,12 @@
 <template>
   <div class="app-main-layout">
     
-    <Navbar />
+    <Navbar @click="isOpen = !isOpen" />
     
-    <Sidebar />
+    <Sidebar v-model="isOpen" />
 
-    <main class="app-content">
+    <!-- добавляем класс full, если сайдбар закрыт и isOpen == false -->
+    <main class="app-content" :class="{full: !isOpen}">
       <div class="app-page">
         <router-view />
       </div>
@@ -25,6 +26,10 @@ import Sidebar from '@/components/app/Sidebar'
 
 export default {
   name: 'main-layout',
+  // в поле data храним состояние сайдбара
+  data: () => ({
+    isOpen: true
+  }),
   components: {
     Navbar, Sidebar
   }

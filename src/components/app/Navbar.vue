@@ -2,7 +2,10 @@
   <nav class="navbar orange lighten-1">
     <div class="nav-wrapper">
       <div class="navbar-left">
-        <a href="#">
+        <!-- $emit('click') - передаём событие клик наверх (название может быть любое) -->
+        <!-- наверху, в теге Navbar слушаем это сыбытие 'click' -->
+        <!-- для имён событий исползовать только kebab-case -->
+        <a href="#" @click.prevent="$emit('click')">
           <i class="material-icons black-text">dehaze</i>
         </a>
         <span class="black-text">12.12.12</span>
