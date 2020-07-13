@@ -1,0 +1,19 @@
+// для регистрации фильтра в файле main.js прописать импорт
+export default function dateFilter(value, format = 'date') {
+  //  Intl принимает локаль и объект options
+  // для предотвращения багов оборачиваем пришедший value в new Date()
+  const options = {}
+
+  // опции отображения даты и времени берём из документации Intl
+  if (format.includes('date')) {
+    options.day = '2-digit'
+    options.month = 'long'
+    options.year = 'numeric'
+  }
+  if (format.includes('time')) {
+    options.hour = '2-digit'
+    options.minute = '2-digit'
+    options.second = '2-digit'
+  }
+  return new Intl.DateTimeFormat('ru-RU', options).format(new Date(value))
+}
